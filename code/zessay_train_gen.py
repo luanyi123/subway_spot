@@ -2,7 +2,7 @@
 # @Author: Zessay
 # @Date:   2019-03-20 21:43:19
 # @Last Modified by:   Zessay
-# @Last Modified time: 2019-03-20 21:44:35
+# @Last Modified time: 2019-03-20 22:06:52
 
 
 # 对原始数据集清洗，生成可以用来训练的数据
@@ -49,6 +49,6 @@ train1_outNum = train1_gen[train1_gen['status'] == 0].rename(columns={'count':'o
 train1_gen = train1_gen.merge(train1_inNum, on=['stationID', 'time_cut'], how='left').merge(train1_outNum, on=['stationID', 'time_cut'], how='left')
 
 # 用0填充缺失值，丢弃不需要的列
-train1_gen = train1_gen.fillna(0.0).drop(['count', 'status'], axis=1)
+train1_gen = train1_gen.fillna(0.0).drop(['count', 'status'], axis=1).drop_duplicates().reset_index()
 # 生成用于训练的文件
 train1_gen.to_csv("data/train_gen/train_01_01.csv", index=False)
