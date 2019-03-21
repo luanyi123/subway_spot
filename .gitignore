@@ -3,6 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Mac file
+*.DS_Store
+.DS_Store
+._.DS_Store
+
 # C extensions
 *.so
 
